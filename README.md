@@ -25,6 +25,12 @@ To edit CMakeLists.txt, find this line and change the first JUCE path to where y
 add_subdirectory(./JUCE ./JUCE)
 ```
 
+Finally, you might want to edit the constructor of the plugin so it can find the onnx model. Find this line and edit it to point at an onnx file on your system: 
+
+```
+std::string modelFile = "../../../../models/big-model.onnx";
+```
+
 Then you can build the project:
 
 ```
