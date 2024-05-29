@@ -13,10 +13,16 @@
 PluginEditor::PluginEditor (PluginProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
     setSize (400, 300);
-    loadONNXModel("/home/matthewyk/src/onnx-juce-example/models/big-model.onnx");
+    // set this to the location of an onnx file
+    std::string modelFile = "../../../../models/big-model.onnx";
+    if (File(modelFile).exists()){
+      loadONNXModel(modelFile);
+    }
+    else{
+      std::cout << "PluginEditor::PluginEditor Cannot find model file " << modelFile << std::endl;
+    }
+
 }
 
 PluginEditor::~PluginEditor()
