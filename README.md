@@ -13,6 +13,18 @@ include_directories(./onnxruntime-linux-x64-1.18.0/include/)
 link_directories(./onnxruntime-linux-x64-1.18.0/lib/)
 ```
 
+Then you need to download JUCE, or if you already have it, edit CMakeLists.txt to reflect where it is. To download:
+
+```
+git clone git@github.com:juce-framework/JUCE.git
+```
+
+To edit CMakeLists.txt, find this line and change the first JUCE path to where your JUCE folder is:
+
+```
+add_subdirectory(./JUCE ./JUCE)
+```
+
 Then you can build the project:
 
 ```
