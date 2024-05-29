@@ -10,7 +10,7 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-TestPluginAudioProcessorEditor::TestPluginAudioProcessorEditor (TestPluginAudioProcessor& p)
+PluginEditor::PluginEditor (PluginProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
     // Make sure that before the constructor has finished, you've set the
@@ -19,12 +19,12 @@ TestPluginAudioProcessorEditor::TestPluginAudioProcessorEditor (TestPluginAudioP
     loadONNXModel("/home/matthewyk/src/onnx-juce-example/models/big-model.onnx");
 }
 
-TestPluginAudioProcessorEditor::~TestPluginAudioProcessorEditor()
+PluginEditor::~PluginEditor()
 {
 }
 
 //==============================================================================
-void TestPluginAudioProcessorEditor::paint (juce::Graphics& g)
+void PluginEditor::paint (juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
@@ -34,14 +34,14 @@ void TestPluginAudioProcessorEditor::paint (juce::Graphics& g)
     g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
 }
 
-void TestPluginAudioProcessorEditor::resized()
+void PluginEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
 }
 
 
-void TestPluginAudioProcessorEditor::loadONNXModel(const std::string& model_file)
+void PluginEditor::loadONNXModel(const std::string& model_file)
 {
     // std::basic_string<ORTCHAR_T> model_file = argv[1];
 
@@ -79,7 +79,7 @@ void TestPluginAudioProcessorEditor::loadONNXModel(const std::string& model_file
 }
 
 // pretty prints a shape dimension vector
-std::string TestPluginAudioProcessorEditor::print_shape(const std::vector<std::int64_t>& v) {
+std::string PluginEditor::print_shape(const std::vector<std::int64_t>& v) {
   std::stringstream ss("");
   for (std::size_t i = 0; i < v.size() - 1; i++) ss << v[i] << "x";
   ss << v[v.size() - 1];
